@@ -1,5 +1,4 @@
 import numpy as np
-print(np.diff([0.25, 1.15, 2.04]))
 import matplotlib.pyplot as plt
 import mplcursors
 
@@ -42,7 +41,7 @@ def simulate(params):
     }
 
 setup_a = {"m": 16, "k": 1600, "c": 40}
-text = input("Масса (кг) и демпфирование (Н·с/м) через пробел, например 32 80 > ")
+text = input("M (кг) and damper (Н·с/м) , for exampele > ")
 parts = text.split()
 m = float(parts[0])
 c = float(parts[1])
@@ -59,14 +58,14 @@ for name, result in results.items():
         periods = np.diff(crossing_times)
         period = np.mean(periods)
         frequency = 1 / period
-        print("Период, с", round(period, 3))
-        print("Частота, Гц", round(frequency, 3))
+        print("period, с", round(period, 3))
+        print("frequency, Гц", round(frequency, 3))
     else:
-        print("Для оценки периода нужны два прохода через середину вправо.")
+        print("Evaluation of the period via two passes from the midpoint.")
     plt.plot(result["times"], result["positions"], label=name)
-plt.xlabel("Время, с")
-plt.ylabel("Положение, м")
-plt.title("Свободные колебания")
+plt.xlabel("Times, с")
+plt.ylabel("Positions, м")
+plt.title("Free Fluctions")
 plt.legend()
 mplcursors.cursor(hover=True)
 plt.show()
